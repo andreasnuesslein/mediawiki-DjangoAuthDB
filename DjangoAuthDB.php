@@ -60,7 +60,7 @@ class DjangoAuthDB extends AuthPlugin {
     $db = $this->connectToDB();
     $sql = 'SELECT username FROM auth_user WHERE username = :username';
     $sql .= ' AND is_active';
-    $sql .= ' AND SUBSTRING(password,12) = SHA1(CONCAT(SUBSTRING(password,6,5),:password))';
+    $sql .= ' AND SUBSTRING_INDEX(password,"$",-1) = SHA1(CONCAT(SUBSTRING_INDEX(SUBSTRING(password,6),"$",1),:password))';
     $sth = $db->prepare($sql);
     if ($sth->execute(array(':username' => $username, ':password' => $password))) {
       $row = $sth->fetch();
