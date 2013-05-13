@@ -1,5 +1,5 @@
 mediawiki-DjangoAuthDB
 ======================
 
-Authenticate mediawiki users against Django Auth
+Authenticate mediawiki users against Django Auth.
 
